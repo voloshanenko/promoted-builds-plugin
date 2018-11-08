@@ -35,6 +35,7 @@ import hudson.model.labels.LabelAtom;
 import hudson.model.labels.LabelExpression;
 import hudson.plugins.promoted_builds.conditions.ManualCondition.ManualApproval;
 import hudson.plugins.promoted_builds.util.JenkinsHelper;
+import hudson.scm.SCM;
 import hudson.security.ACL;
 import hudson.tasks.BuildStep;
 import hudson.tasks.BuildStepDescriptor;
@@ -124,6 +125,11 @@ public final class PromotionProcess extends AbstractProject<PromotionProcess,Pro
             bc.abort();
         }
         return p;
+    }
+
+    @Override
+    public SCM getScm() {
+        return this.getOwner().getScm();
     }
 
     @Override
